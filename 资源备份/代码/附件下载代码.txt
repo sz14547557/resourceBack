@@ -1,0 +1,226 @@
+	/**
+	 * 批量下载选中的文件
+	 * @return
+	 * @return
+	 */
+	public void to_downloadFile(){
+		List<ZXProject> List = bo.getEntityByIds(ZXProject.class, getIds());
+		// bo.downloadFile(List,response);
+		System.out.println("!!12!");
+	}
+	/**
+	 * 批量下载选中项目的全部附件
+	 * @return
+	 * @return
+	 */
+	public String to_downloadFileAll() throws IOException{
+		List<ZXProject> List = bo.getEntityByIds(ZXProject.class, getIds());
+		String[] ids=null;
+		BaseDAO dao= SpringContextUtil.getBean(BaseDAO.class);
+		Map<String,String> storageFileNamesMap= new HashMap<>();
+
+		List<String> fileIdList = new ArrayList<>();
+		//测试批量下载到zip
+		try {
+			for(ZXProject list:List) {
+				//通过list.getStandby3()的值 查找SYS_UPLOAD_FILE标准 id为这个的字段 返回 storageFileName字段 和项目的名称用于前端显示
+				//此处的fileId会有多个
+				java.util.List<ZXProjectDocument> document = list.getDocument();
+				for (ZXProjectDocument zxProjectDocument : document) {
+					fileIdList.add(zxProjectDocument.getFileId());
+				}
+
+				//集合转数组
+				ids = fileIdList.toArray(new String[fileIdList.size()]);
+
+				List<UploadFile>uploadFiles=dao.getListByIds(UploadFile.class,ids,null);
+				for(UploadFile uploadFile:uploadFiles) {
+					if(uploadFile.getStorageFileName()!=null) {
+						//项目储存名称 和文件名称
+						storageFileNamesMap.put(uploadFile.getStorageFileName(), uploadFile.getUploadFileName());
+					}
+				}
+
+			}
+			//传入要下载的附件名称 zip文件的名称
+			downloadFiles(request,response,storageFileNamesMap,"附件");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return NONE;
+
+	}
+	//
+//
+	public String downloadFiles(HttpServletRequest request, HttpServletResponse res, Map<String,String> fileNames, String projectName) throws IOException {
+		try{
+			//获取文件根目录，不同框架获取的方式不一样，可自由切换
+			String beanId = "zXProjectDocument";
+			int curYear = DateUtil.getCurYear();
+
+			//获取文件名称（包括文件格式）
+			String fileName = "项目名称";
+			//方法1：IO流实现下载的功能
+			res.setCharacterEncoding("UTF-8"); //设置编码字符
+			res.setContentType("application/octet-stream;charset=UTF-8"); //设置下载内容类型
+			res.setHeader("Content-disposition", "attachment;filename="+fileName);//设置下载的文件名称
+			OutputStream out = res.getOutputStream();   //创建页面返回方式为输出流，会自动弹出下载框
+
+
+			//将附件中多个文件进行压缩，批量打包下载文件
+			//创建压缩文件需要的空的zip包
+			// String zipBasePath= ServletActionContext.getRequest().getContextPath()+"/upload"+"/"+curYear+"/"+beanId+"/";
+			// String zipBasePath=request.getSession().getServletContext().getRealPath("\\upload")+"\\"+curYear+"\\"+beanId+"\\";
+			// String zipBasePath = ServletActionContext.getServletContext().getRealPath( "\\upload")+"\\"+curYear+"\\"+beanId+"\\";
+
+
+			//将附件中多个文件进行压缩，批量打包下载文件
+			//创建压缩文件需要的空的zip包
+			String zipBasePath=request.getSession().getServletContext().getRealPath("/upload")+"/"+curYear+"/"+beanId+"/";
+			//zip的名称
+			String zipName = new String((projectName+".zip").getBytes("GBK"), "ISO8859_1");
+			String zipFilePath = zipBasePath+ File.separator+zipName;
+
+			//创建需要下载的文件路径的集合
+			Map<String,String> filePaths=new HashMap<String, String>();
+
+			//遍历这个map 将文件和文件名称传到方法中
+			//改进为效率更高的迭代器方式
+			Iterator<Map.Entry<String,String>> fileNameEntry =fileNames.entrySet().iterator();
+
+			while(fileNameEntry.hasNext()) {
+				Map.Entry<String,String> entry=fileNameEntry.next();
+				String key=entry.getKey();
+				String value=entry.getValue();
+				filePaths.put(zipBasePath+File.separator+key, value);
+			}
+			//压缩文件
+			File zip = new File(zipFilePath);
+			if (!zip.exists()){
+				zip.createNewFile();
+			}
+			//创建zip文件输出流
+			ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zip));
+			this.zipFile(zipBasePath,zipName, zipFilePath,filePaths,zos);
+			zos.close();
+			res.setHeader("Content-disposition", "attachment;filename="+zipName);//设置下载的压缩文件名称
+
+			//将打包后的文件写到客户端，输出的方法同上，使用缓冲流输出
+			BufferedInputStream bis = new BufferedInputStream(new FileInputStream(zipFilePath));
+			byte[] buff = new byte[bis.available()];
+			bis.read(buff);
+			bis.close();
+			out.write(buff);//输出数据文件
+			out.flush();//释放缓存
+			out.close();//关闭输出流
+
+		}catch(Exception e) {
+			e.printStackTrace();
+			res.reset();
+			res.setCharacterEncoding("UTF-8");
+			res.setContentType("text/html;charset=UTF-8");
+			res.getWriter().print("<div align=\"center\" style=\"font-size: 30px;font-family: serif;color: red;\">系统内部错误，下载未成功，请联系管理员！</div>"
+					+ "<div>错误信息："+e.getMessage()+"</div>");
+			res.getWriter().flush();
+			res.getWriter().close();
+		}
+		return null;
+	}
+	//
+//
+// 	/**
+// 	 * 压缩文件
+// 	 * @param zipBasePath 临时压缩文件基础路径
+// 	 * @param zipName 临时压缩文件名称
+// 	 * @param zipFilePath 临时压缩文件完整路径
+// 	 * @param filePaths 需要压缩的文件路径集合
+// 	 * @throws IOException
+// 	 */
+	private String zipFile(String zipBasePath, String zipName, String zipFilePath, Map<String,String> filePaths, ZipOutputStream zos) throws IOException {
+
+		//循环读取文件路径集合，获取每一个文件的路径
+		Iterator<Map.Entry<String, String>> filePathsEntry=filePaths.entrySet().iterator();
+
+		while(filePathsEntry.hasNext()) {
+			Map.Entry<String, String> entry=filePathsEntry.next();
+			String key=entry.getKey();
+			String value=entry.getValue();
+			File inputFile = new File(key);  //根据文件路径创建文件
+
+			if(inputFile.exists()) { //判断文件是否存在
+				if (inputFile.isFile()) {  //判断是否属于文件，还是文件夹
+					//创建输入流读取文件
+					BufferedInputStream bis = new BufferedInputStream(new FileInputStream(inputFile));
+
+					//将文件写入zip内，即将文件进行打包
+//                  zos.putNextEntry(new ZipEntry(inputFile.getName()));
+//				  将给定的信息写入到输出流中
+//
+//				ZipOutputStream是创建一个zip的输出流  ZipEntry是写入到zip输出流的文件
+					zos.putNextEntry(new ZipEntry(value));
+
+					//写入文件的方法，同上
+					int size = 0;
+					byte[] buffer = new byte[1024];  //设置读取数据缓存大小
+					while ((size = bis.read(buffer)) > 0) {
+						zos.write(buffer, 0, size);
+					}
+					//关闭输入输出流
+					//关闭这个zip文件中当前打开的项
+					zos.closeEntry();
+					bis.close();
+
+				}
+//              else {  //如果是文件夹，则使用穷举的方法获取文件，写入zip
+//                  try {
+//                      File[] files = inputFile.listFiles();
+//                      List<String> filePathsTem = new ArrayList<String>();
+//                      //此处
+//                      for (File fileTem:files) {
+//                      	filePathsTem.add(fileTem.toString());
+//                      }
+//                      return zipFile(zipBasePath, zipName, zipFilePath, filePathsTem,zos);
+//                  } catch (Exception e) {
+//                      e.printStackTrace();
+//                  }
+//              }
+			}
+		}
+
+		return null;
+	}
+
+
+
+	/**
+	 * 检查批量下载选中的文件
+	 * @return
+	 */
+	public void to_checkDownloadIds(){
+		try {
+			List<ZXProject> List = bo.getEntityByIds(ZXProject.class, getIds());
+			String flag = "allow";
+			Integer zcCount = 0;
+			Integer wzsCount = 0;
+			for (ZXProject zxProject:List) {
+				//若审核状态为空则返回页面提示错误
+				if(StringUtil.isEmpty(zxProject.getCheckStatus())){
+					flag = "notallow";
+					break;
+				}
+				//记录选中的内容中审核状态为暂存的个数
+				if(zxProject.getCheckStatus().equals(ICheckAble.CHECK_STATUS_TEMPORARY)){
+					zcCount ++;
+				}
+				//记录选中的内容中审核状态不为终审通过的个数
+				if(!zxProject.getCheckStatus().equals(ICheckAble.CHECK_STATUS_ENDPASS)){
+					wzsCount ++;
+				}
+			}
+			response.getWriter().write("{\"flag\":\"" + flag + "\",\"zcCount\":\""+zcCount+"\",\"wzsCount\":\""+wzsCount+"\"}");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
