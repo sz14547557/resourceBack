@@ -1,0 +1,172 @@
+log4j.rootLogger=INFO
+#log level:	DEBUG,INFO,WARN,ERROR,FATAL
+
+# appender: 
+# 1, SS_FILE(DEBUG+) 	: performance log,filePath=${catalina.home}/performance.log
+# 2, CONSOLE(ERROR+)	: console log
+# 3, DONE_FILE(ERROR+)	: general file log,filePath=${catalina.home}/v8Log.log
+# 4, MAIL(ERROR+)		: send mail log
+
+
+#log.1 : performance log
+log4j.logger.druid.sql=WARN,PER_DB_FILE
+log4j.logger.com.alibaba.druid.filter.stat.StatFilter=DEBUG,PER_DB_FILE,CONSOLE
+log4j.logger.com.eplugger.util.filter.PubFilter=DEBUG,PER_SYS_FILE,CONSOLE
+log4j.logger.com.eplugger.abilities.monitorCenter.runtime.utils.RuntimeMonitorUtils=DEBUG,RUNTIME_SYS_FILE
+log4j.logger.com.eplugger.utils.office.WordUtils=DEBUG,LOGIN_SYS_FILE
+log4j.logger.com.eplugger.service.bo.PublicBusiness=DEBUG,LOGIN_SYS_FILE
+log4j.logger.com.eplugger.business.projectApply.action.ProjectApplyBookAction=DEBUG,LOGIN_SYS_FILE
+log4j.logger.com.eplugger.cw.sync.executor.tc.TcProjectIncomeTBExecutor=DEBUG,LOGIN_SYS_FILE
+
+#log 2 : junit log
+log4j.logger.com.eplugger.test=ERROR,CONSOLE,DONE_FILE
+
+#log.3.1 : struts2  
+log4j.logger.com.opensymphony.xwork2=ERROR,CONSOLE
+log4j.logger.org.apache.struts2=ERROR,CONSOLE
+
+#log.3.2 : hibernate
+log4j.logger.org.hibernate.tool.hbm2ddl=FATAL,CONSOLE,DONE_FILE
+log4j.logger.org.hibernate=ERROR,CONSOLE,DONE_FILE
+
+#log.3.3 : spring
+log4j.logger.org.springframework=ERROR,CONSOLE,DONE_FILE
+log4j.logger.org.springframework.orm.hibernate3=ERROR,CONSOLE,DONE_FILE
+
+#log.4 : time task
+log4j.logger.com.eplugger.business.patent.util.PatentPayRemindJob=DEBUG,TASK_FILE
+log4j.logger.com.eplugger.business.outlay.util.FeeAlarmSetJob=DEBUG,TASK_FILE
+log4j.logger.com.eplugger.netSearch.paper.util.NetSearchPaperJob=DEBUG,TASK_FILE
+log4j.logger.com.eplugger.business.researchUnit.util.ResearchUnitProductJob=DEBUG,TASK_FILE
+log4j.logger.com.eplugger.business.unitAptitude.utils.UnitAptitudeExpireJob=DEBUG,TASK_FILE
+log4j.logger.com.eplugger.tb.hr.util.HrTbJob=DEBUG,TASK_FILE
+log4j.logger.com.eplugger.cw.job.CwTBPullJob=DEBUG,TASK_FILE
+log4j.logger.com.eplugger.cw.job.CwTBPushJob=DEBUG,TASK_FILE
+
+#log.5 : all exception  
+log4j.logger.org.apache.commons=ERROR,CONSOLE
+log4j.logger.com.mchange.v2.resourcepool.BasicResourcePool=ERROR,CONSOLE
+log4j.logger.net.sf.ehcache=ERROR,CONSOLE
+log4j.logger.org.quartz=ERROR,CONSOLE
+log4j.logger.org.jasig.cas=ERROR,CONSOLE
+log4j.logger.freemarker=ERROR,CONSOLE
+log4j.logger.com.mchange.v2=ERROR,CONSOLE
+
+#log.6 : netSearchProduct
+log4j.logger.com.eplugger.netSearch.netSearchProduct.util.CnkiSearch=INFO,CONSOLE,EpPaperCliam
+log4j.logger.com.eplugger.netSearch.netSearchProduct.parse.CnkiEpPaperParse=INFO,CONSOLE,EpPaperCliam
+log4j.logger.com.eplugger.netSearch.netSearchProduct.util.EiSearch=INFO,CONSOLE,EpPaperCliam
+log4j.logger.com.eplugger.netSearch.netSearchProduct.parse.EIEpPaperParse=INFO,CONSOLE,EpPaperCliam
+log4j.logger.com.eplugger.netSearch.netSearchProduct.util.WebOfScienceSearch=INFO,CONSOLE,EpPaperCliam
+log4j.logger.com.eplugger.netSearch.netSearchProduct.parse.WOSEpPaperParse=INFO,CONSOLE,EpPaperCliam
+log4j.logger.com.eplugger.netSearch.netSearchProduct.util.BaseSearch=INFO,CONSOLE,EpPaperCliam
+
+###################
+# Console Appender
+###################
+log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+log4j.appender.CONSOLE.Threshold=INFO
+log4j.appender.CONSOLE.Target=System.out
+log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+log4j.appender.CONSOLE.layout.ConversionPattern= [%p] %d %c - %m%n
+###################
+# system performance
+###################
+log4j.appender.PER_SYS_FILE=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.PER_SYS_FILE.Threshold=DEBUG
+log4j.appender.PER_SYS_FILE.File=${catalina.home}/logs/performance_sys.log
+log4j.appender.PER_SYS_FILE.DatePattern='.'yyyy-MM-dd
+log4j.appender.PER_SYS_FILE.Append=true
+log4j.appender.PER_SYS_FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.PER_SYS_FILE.layout.ConversionPattern=[%5p] %d %c - %m%n
+###################
+# 
+###################
+#log4j.appender.LOGIN_SYS_FILE=org.apache.log4j.DailyRollingFileAppender
+#log4j.appender.LOGIN_SYS_FILE.Threshold=DEBUG
+#log4j.appender.LOGIN_SYS_FILE.File=${catalina.home}/logs/performance_login.log
+#log4j.appender.LOGIN_SYS_FILE.DatePattern='.'yyyy-MM-dd
+#log4j.appender.LOGIN_SYS_FILE.Append=true
+#log4j.appender.LOGIN_SYS_FILE.layout=org.apache.log4j.PatternLayout
+#log4j.appender.LOGIN_SYS_FILE.layout.ConversionPattern=[%5p] %d %c - %m%n
+###################
+# system runtimeMonitor
+###################
+log4j.appender.RUNTIME_SYS_FILE=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.RUNTIME_SYS_FILE.Threshold=DEBUG
+log4j.appender.RUNTIME_SYS_FILE.File=${catalina.home}/logs/runtimeMonitor_sys.log
+log4j.appender.RUNTIME_SYS_FILE.DatePattern='.'yyyy-MM-dd
+log4j.appender.RUNTIME_SYS_FILE.Append=true
+log4j.appender.RUNTIME_SYS_FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.RUNTIME_SYS_FILE.layout.ConversionPattern=[%5p] %d %c - %m%n
+###################
+# db performance
+###################
+log4j.appender.PER_DB_FILE=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.PER_DB_FILE.Threshold=DEBUG
+log4j.appender.PER_DB_FILE.File=${catalina.home}/logs/performance_db.log
+log4j.appender.PER_DB_FILE.DatePattern='.'yyyy-MM-dd
+log4j.appender.PER_DB_FILE.Append=true
+log4j.appender.PER_DB_FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.PER_DB_FILE.layout.ConversionPattern=[%5p] %d %c - %m%n
+########################
+# DONE_FILE Appender
+########################
+log4j.appender.DONE_FILE=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.DONE_FILE.Threshold=DEBUG
+log4j.appender.DONE_FILE.File=${catalina.home}/logs/v8Log_.log
+log4j.appender.DONE_FILE.DatePattern='.'yyyy-MM-dd
+log4j.appender.DONE_FILE.Append=true
+log4j.appender.DONE_FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.DONE_FILE.layout.ConversionPattern=[%5p] %d %c - %m%n
+########################
+# TASK_FILE Appender
+########################
+log4j.appender.TASK_FILE=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.TASK_FILE.Threshold=DEBUG
+log4j.appender.TASK_FILE.File=${catalina.home}/logs/v8Log_task.log
+log4j.appender.TASK_FILE.DatePattern='.'yyyy-MM-dd
+log4j.appender.TASK_FILE.Append=true
+log4j.appender.TASK_FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.TASK_FILE.layout.ConversionPattern=[%5p] %d %c - %m%n
+########################
+# MAIL Appender
+########################
+log4j.appender.MAIL=org.apache.log4j.net.SMTPAppender
+log4j.appender.MAIL.Threshold=ERROR
+log4j.appender.MAIL.BufferSize=10
+log4j.appender.MAIL.From=
+log4j.appender.MAIL.SMTPUsername=
+log4j.appender.MAIL.SMTPPassword=
+log4j.appender.MAIL.SMTPHost=
+log4j.appender.MAIL.Subject=henan province system error log
+log4j.appender.MAIL.To=
+log4j.appender.MAIL.layout=org.apache.log4j.PatternLayout
+log4j.appender.MAIL.layout.ConversionPattern=[framework] %d - %c -%-4r [%t] %-5p %c %x - %m%n
+
+########################
+# eplugger Appender
+########################
+log4j.appender.EP=com.eplugger.abilities.monitorCenter.exception.log4jAppender.EpAppender
+log4j.appender.EP.Threshold=ERROR
+log4j.appender.EP.layout=org.apache.log4j.PatternLayout
+log4j.appender.EP.layout.ConversionPattern= [%-d{yyyy-MM-dd HH:mm:ss}]-[%t-%5p]-[%C-%M(%L)]\uff1a %m%n
+
+#sz测试临时文件路径
+log4j.appender.LOGIN_SYS_FILE=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.LOGIN_SYS_FILE.Threshold=INFO
+log4j.appender.LOGIN_SYS_FILE.File=${catalina.home}/logs/performance_sz.log
+log4j.appender.LOGIN_SYS_FILE.DatePattern='.'yyyy-MM-dd
+log4j.appender.LOGIN_SYS_FILE.Append=true
+log4j.appender.LOGIN_SYS_FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.LOGIN_SYS_FILE.layout.ConversionPattern=[%5p] %d %c - %m%n
+###################
+# epPaperCliam Appender 
+###################
+log4j.appender.EpPaperCliam=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.EpPaperCliam.Threshold=INFO
+log4j.appender.EpPaperCliam.File=${catalina.home}/logs/epPaperCliam.log
+log4j.appender.EpPaperCliam.DatePattern='.'yyyy-MM-dd
+log4j.appender.EpPaperCliam.Append=true
+log4j.appender.EpPaperCliam.layout=org.apache.log4j.PatternLayout
+log4j.appender.EpPaperCliam.layout.ConversionPattern=[%5p] %d %c - %m%n
