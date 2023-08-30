@@ -1,0 +1,10 @@
+https://blog.csdn.net/ming19951224/article/details/109063041
+
+
+docker run -d --restart=always --name rmqnamesrv -p 9876:9876 -v /d/docker/rocketmq/data/namesrv/logs:/root/logs -v /d/docker/rocketmq/data/namesrv/store:/root/store -e "MAX_POSSIBLE_HEAP=100000000" rocketmqinc/rocketmq sh mqnamesrv
+
+
+docker run -d  --restart=always --name rmqbroker --link rmqnamesrv:namesrv -p 10911:10911 -p 10909:10909 -v  /d/docker/rocketmq/data/broker/logs:/root/logs -v  /d/docker/rocketmq/data/broker/store:/root/store -v /d/docker/rocketmq/conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf -e "NAMESRV_ADDR=namesrv:9876" -e "MAX_POSSIBLE_HEAP=200000000" rocketmqinc/rocketmq sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf
+
+
+docker run -d --restart=always --name rmqadmin -e "JAVA_OPTS=-Drocketmq.namesrv.addr=192.168.0.128:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false" -p 9999:8080 pangliang/rocketmq-console-ng

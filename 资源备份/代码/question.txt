@@ -1,6 +1,25 @@
 C51CD8E64B0AEB778364765013DF9EBE
 
-UPDATE [dbo].[SYS_USER] set PASSWORD='C51CD8E64B0AEB778364765013DF9EBE'  WHERE account in ('10000','superadmin','logadmin','configadmin')
+<q123456>
+UPDATE [dbo].[SYS_USER] set PASSWORD='C51CD8E64B0AEB778364765013DF9EBE'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin')
+<q123456!>
+UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin')
+
+
+
+ <a href="${contextPath}/userAction!to_eplg.action">管理员登录</a>
+ <a href="${contextPath}/userAction!to_login.action">科研登录</a>
+
+
+<button class="ep_btn" onclick="window.location.href='${contextPath}/system/user/cfg/login'">管理员登录</button>
+<button class="ep_btn" onclick="window.location.href='${contextPath}/system/user/login'">普通登录</button>
+
+
+
+工作平台：sunzheng  密码：4Zy8vgd2
+
+####
+
 
 1.同步和阻塞的区别是什么？
 2.线程池的问题？

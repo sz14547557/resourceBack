@@ -20,7 +20,7 @@
 	@Meaning("备用字段10")
 	private Date standby10;
  //备用字段
-               @Column(name="STANDBY1")
+     @Column(name="STANDBY1")
 	public String getStandby1() {
 		return standby1;
 	}
