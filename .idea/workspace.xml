@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76b45e5c-223c-483b-a38e-e0b6b777ab02" name="默认变更列表" comment="资源备份">
-      <change afterPath="$PROJECT_DIR$/资源备份/VR" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/资源备份/漫画.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/资源备份/电视剧.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/资源备份/PC" beforeDir="false" afterPath="$PROJECT_DIR$/资源备份/PC" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/资源备份/PC" beforeDir="false" afterPath="$PROJECT_DIR$/资源备份/PC.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/资源备份/Switch.txt" beforeDir="false" afterPath="$PROJECT_DIR$/资源备份/Switch.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/资源备份/VR" beforeDir="false" afterPath="$PROJECT_DIR$/资源备份/VR.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/资源备份/ps4Pro.txt" beforeDir="false" afterPath="$PROJECT_DIR$/资源备份/ps4Pro.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/资源备份/书籍" beforeDir="false" afterPath="$PROJECT_DIR$/资源备份/书籍.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/资源备份/代码/question.txt" beforeDir="false" afterPath="$PROJECT_DIR$/资源备份/代码/question.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/资源备份/动漫.txt" beforeDir="false" afterPath="$PROJECT_DIR$/资源备份/动漫.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/资源备份/电影、电视剧.txt" beforeDir="false" afterPath="$PROJECT_DIR$/资源备份/电影.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,24 +42,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../idea_project" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RebelAgentSelection">
     <selection>jr</selection>
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\ResourceBack\资源备份" />
       <recent name="D:\ResourceBack\.idea" />
     </key>
   </component>
@@ -90,14 +95,121 @@
       <workItem from="1684830839654" duration="600000" />
       <workItem from="1684891585271" duration="35000" />
       <workItem from="1684891743110" duration="1212000" />
-      <workItem from="1684909102198" duration="661000" />
+      <workItem from="1684909102198" duration="1384000" />
+      <workItem from="1685324636169" duration="1208000" />
+      <workItem from="1685329028857" duration="36000" />
+      <workItem from="1685526181624" duration="1267000" />
+      <workItem from="1685612595709" duration="1550000" />
+      <workItem from="1685673682025" duration="58000" />
+      <workItem from="1685673862597" duration="608000" />
+      <workItem from="1685929475782" duration="1737000" />
+      <workItem from="1685958417713" duration="145000" />
+      <workItem from="1686035971789" duration="845000" />
+      <workItem from="1686036871287" duration="49000" />
+      <workItem from="1686211608236" duration="337000" />
+      <workItem from="1686275585771" duration="205000" />
+      <workItem from="1686617684393" duration="614000" />
+      <workItem from="1686705873167" duration="603000" />
+      <workItem from="1686714677549" duration="12000" />
+      <workItem from="1686724839047" duration="610000" />
+      <workItem from="1686816959333" duration="105000" />
+      <workItem from="1686881718806" duration="611000" />
+      <workItem from="1687001441789" duration="61000" />
+      <workItem from="1687166490324" duration="613000" />
+      <workItem from="1687224571864" duration="94000" />
+      <workItem from="1687224748488" duration="64000" />
+      <workItem from="1687316491839" duration="633000" />
+      <workItem from="1687764080814" duration="341000" />
+      <workItem from="1687764703620" duration="122000" />
+      <workItem from="1687933215148" duration="30000" />
+      <workItem from="1688095272110" duration="466000" />
+      <workItem from="1688346489186" duration="113000" />
+      <workItem from="1688524695486" duration="44000" />
+      <workItem from="1689056938964" duration="1078000" />
+      <workItem from="1689559010767" duration="613000" />
+      <workItem from="1689584557981" duration="781000" />
+      <workItem from="1689815486690" duration="166000" />
+      <workItem from="1689821519648" duration="170000" />
+      <workItem from="1690019780524" duration="48000" />
+      <workItem from="1690160617145" duration="1900000" />
+      <workItem from="1690165441952" duration="798000" />
+      <workItem from="1690273182754" duration="1865000" />
+      <workItem from="1690353728105" duration="1385000" />
+      <workItem from="1690355752682" duration="462000" />
+      <workItem from="1691031813064" duration="149000" />
+      <workItem from="1691120310147" duration="1281000" />
+      <workItem from="1691572157096" duration="58000" />
+      <workItem from="1691758088439" duration="122000" />
+      <workItem from="1692175381209" duration="2099000" />
+      <workItem from="1693206398005" duration="1270000" />
+      <workItem from="1693280913126" duration="10105000" />
+      <workItem from="1693799235443" duration="9400000" />
+      <workItem from="1693808709991" duration="2093000" />
+      <workItem from="1694136874579" duration="1178000" />
+      <workItem from="1694395791794" duration="2154000" />
+      <workItem from="1694746157028" duration="2339000" />
+      <workItem from="1695000187766" duration="1651000" />
+      <workItem from="1695090450547" duration="768000" />
+      <workItem from="1695094001008" duration="24000" />
+      <workItem from="1695095292460" duration="425000" />
+      <workItem from="1695106496995" duration="998000" />
+      <workItem from="1695192730700" duration="318000" />
+      <workItem from="1695264918372" duration="1565000" />
+      <workItem from="1695349978917" duration="579000" />
+      <workItem from="1695365111954" duration="142000" />
+      <workItem from="1695611639769" duration="2044000" />
+      <workItem from="1695796835970" duration="599000" />
+      <workItem from="1695888444914" duration="604000" />
+      <workItem from="1696647566534" duration="684000" />
+      <workItem from="1696668187737" duration="2540000" />
+      <workItem from="1696821272619" duration="2302000" />
+      <workItem from="1696907429970" duration="1350000" />
+      <workItem from="1697017566060" duration="566000" />
+      <workItem from="1697073112424" duration="2101000" />
+      <workItem from="1697091452784" duration="191000" />
+      <workItem from="1697092503484" duration="836000" />
+      <workItem from="1697417757273" duration="38000" />
     </task>
+    <task id="LOCAL-00001" summary="资源备份">
+      <created>1684909838307</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1684909838307</updated>
+    </task>
+    <task id="LOCAL-00002" summary="资源备份">
+      <created>1684909883250</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1684909883250</updated>
+    </task>
+    <task id="LOCAL-00003" summary="资源备份">
+      <created>1686036811728</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1686036811728</updated>
+    </task>
+    <task id="LOCAL-00004" summary="资源备份">
+      <created>1693386722036</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1693386722036</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="f88be4e1-2e10-49e5-8193-e407e217192d" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -108,7 +220,6 @@
         <entry key="f88be4e1-2e10-49e5-8193-e407e217192d">
           <value>
             <State>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -127,6 +238,7 @@
                   </entry>
                 </map>
               </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
             </State>
           </value>
         </entry>
@@ -137,12 +249,6 @@
         </entry>
       </map>
     </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="f88be4e1-2e10-49e5-8193-e407e217192d" value="TOOL_WINDOW" />
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="资源备份" />
