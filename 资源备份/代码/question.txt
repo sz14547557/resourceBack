@@ -3,7 +3,7 @@ C51CD8E64B0AEB778364765013DF9EBE
 <q123456>
 UPDATE [dbo].[SYS_USER] set PASSWORD='C51CD8E64B0AEB778364765013DF9EBE'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin')
 <q123456!>
-UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin','001')
+UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin','001','kyyplgtest')
 
 
 
