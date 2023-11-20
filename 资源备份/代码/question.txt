@@ -18,7 +18,15 @@ UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE a
 
 工作平台：sunzheng  密码：4Zy8vgd2
 
+#8080端口占用问题
+netstat -ano | findstr 8080
+
+
+taskkill -pid 7244 -f
+
 ####
+
+
 
 
 1.同步和阻塞的区别是什么？
