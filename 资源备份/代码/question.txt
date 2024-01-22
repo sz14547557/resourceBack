@@ -25,7 +25,9 @@ netstat -ano | findstr 8080
 
 taskkill -pid 7244 -f
 
+并签和会签的区别：
 
+并签只要有一个通过就可以通过，会签必须全部通过才可以通过。
 
 $("#entity\\.previousProject_").on("change", changePreviousProject);
 
