@@ -19,6 +19,9 @@ UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE a
 
 工作平台：sunzheng  密码：4Zy8vgd2
 
+视频激活码：
+XQIPTOQUNYYJOJXD8572762191890047
+
 #8080端口占用问题
 netstat -ano | findstr 8080
 
@@ -46,7 +49,19 @@ function changePreviousProject(){
 
 ####
 
+截取字符串的sql
+  //先截取前缀，再截取后缀。对获取的流水号进行最大值的判断，保证出现 9999 和 10000时能正确获取最大值为10000
+            String sql = "";
+            if (DBUtils.isSqlServer()) {
+                 sql =  "select max(CONVERT(INT, LEFT((SUBSTRING(:attr,"+(prefixStr.length()+1)+" , LEN(:attr) - 1)),len(SUBSTRING(:attr,"+(prefixStr.length()+1)+" , LEN(:attr) - 1)) -"+suffixLength+")))from :tableName where :attr like ':val'";
 
+            } else if (DBUtils.isOracle() || DBUtils.isDm()) {
+                 sql =  "select MAX(TO_NUMBER(SUBSTR(SUBSTR(:attr,"+(prefixStr.length()+1)+"),1,LENGTH(SUBSTR(:attr, "+(prefixStr.length()+1)+")) -"+suffixLength+"))) from :tableName where :attr like ':val'";
+
+            } else if (DBUtils.isMySql()) {
+                 sql = "select MAX(CAST(SUBSTRING(SUBSTRING(:attr, "+(prefixStr.length()+1)+"), 1, LENGTH(SUBSTRING(:attr, "+(prefixStr.length()+1)+")) - "+suffixLength+") AS SIGNED)) from :tableName where :attr like ':val'";
+
+            sql = sql.replaceAll(":attr", columnName).replace(":tableName", tableName).replace(":val", sb.toString());
 
 
 1.同步和阻塞的区别是什么？

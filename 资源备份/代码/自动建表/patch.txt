@@ -1,0 +1,4 @@
+复制 org目录与applicationContext-patch.xml到web-info的classes下
+视图修改需先启动一次后覆盖
+
+webxml配置 classpath*:applicationContext-patch.xml
