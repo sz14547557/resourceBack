@@ -22,11 +22,16 @@ UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE a
 视频激活码：
 XQIPTOQUNYYJOJXD8572762191890047
 
-#8080端口占用问题
+#windows的8080端口占用问题
 netstat -ano | findstr 8080
-
-
 taskkill -pid 7244 -f
+
+#mac的8080端口占用问题
+lsof -i tcp:8080
+kill pid
+
+
+
 
 并签和会签的区别：
 
