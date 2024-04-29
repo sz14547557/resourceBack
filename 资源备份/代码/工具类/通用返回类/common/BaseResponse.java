@@ -1,0 +1,56 @@
+package com.sz.usercenter.common;
+
+import lombok.Data;
+
+import java.io.Serializable;
+
+/**
+ * 通用返回类
+ *
+
+ */
+@Data
+public class BaseResponse<T> implements Serializable {
+
+    /**
+     * 状态码
+     */
+    private int code;
+
+    /**
+     * 数据
+     */
+    private T data;
+
+    /**
+     * 消息
+     */
+    private String message;
+
+    /**
+     * 描述
+     */
+    private String description;
+
+    private boolean success;
+
+    public BaseResponse(int code, T data, String message, String description,boolean success) {
+        this.code = code;
+        this.data = data;
+        this.message = message;
+        this.description = description;
+        this.success = success;
+    }
+
+    public BaseResponse(int code, T data, String message,boolean success) {
+        this(code, data, message, "",success);
+    }
+
+    public BaseResponse(int code, T data,boolean success) {
+        this(code, data, "", "",success);
+    }
+
+    public BaseResponse(ErrorCode errorCode) {
+        this(errorCode.getCode(), null, errorCode.getMessage(), errorCode.getDescription(),errorCode.getSuccess());
+    }
+}
