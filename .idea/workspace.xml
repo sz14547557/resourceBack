@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76b45e5c-223c-483b-a38e-e0b6b777ab02" name="默认变更列表" comment="资源备份">
-      <change afterPath="$PROJECT_DIR$/untitled/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/资源备份/代码/docker/Dockerfile/DockerFIle启动springBoot文件（手动部署,需要已有Jar包）.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/资源备份/代码/docker/Dockerfile/DockerFIle启动springBoot文件（自动部署，不需要已有Jar包）.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/资源备份/代码/docker/docker-compose.yml/1.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/资源备份/代码/docker/docker-compose.yml/docker-compose.yaml文件快速安装Mysql、Nacos、Seata、Redis、Elasticsearch、Kibana、Canal、Rocketmq中间件.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/资源备份/代码/question.txt" beforeDir="false" afterPath="$PROJECT_DIR$/资源备份/代码/question.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/资源备份/Switch.txt" beforeDir="false" afterPath="$PROJECT_DIR$/资源备份/Switch.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/资源备份/ps4Pro.txt" beforeDir="false" afterPath="$PROJECT_DIR$/资源备份/ps4Pro.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/资源备份/动漫.txt" beforeDir="false" afterPath="$PROJECT_DIR$/资源备份/动漫.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/资源备份/电影.txt" beforeDir="false" afterPath="$PROJECT_DIR$/资源备份/电影.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +18,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -28,6 +32,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -46,27 +53,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="jdk.selected.JAVA_MODULE" value="11.0.5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/资源备份/代码/docker/Docker-compose" />
-    <property name="project.structure.last.edited" value="模块" />
-    <property name="project.structure.proportion" value="0.15136719" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/ResourceBack/资源备份/代码/工具类/通用返回类&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RebelAgentSelection">
     <selection>jr</selection>
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ResourceBack\资源备份\代码\工具类\通用返回类" />
       <recent name="$PROJECT_DIR$/资源备份/代码/docker/Docker-compose" />
       <recent name="$PROJECT_DIR$/资源备份/代码/docker/Dockerfile" />
       <recent name="$PROJECT_DIR$/资源备份/代码/docker" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\ResourceBack\资源备份\draw.io" />
       <recent name="D:\ResourceBack\资源备份" />
       <recent name="D:\ResourceBack\.idea" />
     </key>
@@ -193,6 +204,57 @@
       <workItem from="1697417757273" duration="38000" />
       <workItem from="1708850180323" duration="437000" />
       <workItem from="1708850626566" duration="8130000" />
+      <workItem from="1708994940138" duration="4203000" />
+      <workItem from="1709015994449" duration="1681000" />
+      <workItem from="1709112488448" duration="313000" />
+      <workItem from="1709174240502" duration="522000" />
+      <workItem from="1709178196789" duration="162000" />
+      <workItem from="1709257564503" duration="1491000" />
+      <workItem from="1709279164653" duration="1822000" />
+      <workItem from="1709516028119" duration="725000" />
+      <workItem from="1709620497342" duration="240000" />
+      <workItem from="1709778832395" duration="208000" />
+      <workItem from="1710121022042" duration="2063000" />
+      <workItem from="1710213437273" duration="2398000" />
+      <workItem from="1710315654921" duration="29000" />
+      <workItem from="1710320185491" duration="77000" />
+      <workItem from="1710320992945" duration="403000" />
+      <workItem from="1710399731539" duration="601000" />
+      <workItem from="1710407996913" duration="1970000" />
+      <workItem from="1710472009846" duration="809000" />
+      <workItem from="1710723200026" duration="116000" />
+      <workItem from="1710725321185" duration="596000" />
+      <workItem from="1710744634789" duration="702000" />
+      <workItem from="1711336454627" duration="3374000" />
+      <workItem from="1711416889764" duration="641000" />
+      <workItem from="1711420329290" duration="17000" />
+      <workItem from="1711438784199" duration="1673000" />
+      <workItem from="1711510355054" duration="1209000" />
+      <workItem from="1711694898460" duration="477000" />
+      <workItem from="1711698931726" duration="436000" />
+      <workItem from="1712045049735" duration="656000" />
+      <workItem from="1712647424597" duration="451000" />
+      <workItem from="1712654307889" duration="664000" />
+      <workItem from="1712715523465" duration="946000" />
+      <workItem from="1712730351980" duration="2011000" />
+      <workItem from="1712888624036" duration="1461000" />
+      <workItem from="1712903494855" duration="1869000" />
+      <workItem from="1713145999662" duration="98000" />
+      <workItem from="1713151136492" duration="1104000" />
+      <workItem from="1713234310535" duration="1331000" />
+      <workItem from="1713404516573" duration="113000" />
+      <workItem from="1713426092891" duration="603000" />
+      <workItem from="1713498238313" duration="886000" />
+      <workItem from="1713513810579" duration="1212000" />
+      <workItem from="1713704801347" duration="1266000" />
+      <workItem from="1713748717044" duration="6533000" />
+      <workItem from="1713861337518" duration="1410000" />
+      <workItem from="1713929778811" duration="7146000" />
+      <workItem from="1714101991470" duration="4847000" />
+      <workItem from="1714466063115" duration="60000" />
+      <workItem from="1715050790363" duration="7263000" />
+      <workItem from="1715582217384" duration="702000" />
+      <workItem from="1715588116135" duration="2781000" />
     </task>
     <task id="LOCAL-00001" summary="资源备份">
       <created>1684909838307</created>
@@ -222,13 +284,67 @@
       <option name="project" value="LOCAL" />
       <updated>1693386722036</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="资源备份">
+      <created>1709016232908</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1709016232908</updated>
+    </task>
+    <task id="LOCAL-00006" summary="资源备份">
+      <created>1710320228791</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1710320228791</updated>
+    </task>
+    <task id="LOCAL-00007" summary="资源备份">
+      <created>1711695347377</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711695347377</updated>
+    </task>
+    <task id="LOCAL-00008" summary="资源备份">
+      <created>1713705436093</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1713705436093</updated>
+    </task>
+    <task id="LOCAL-00009" summary="资源备份">
+      <created>1713863586611</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1713863586611</updated>
+    </task>
+    <task id="LOCAL-00010" summary="资源备份">
+      <created>1714013710903</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1714013710903</updated>
+    </task>
+    <task id="LOCAL-00011" summary="资源备份">
+      <created>1714383670696</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1714383670696</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="f88be4e1-2e10-49e5-8193-e407e217192d" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -239,7 +355,6 @@
         <entry key="f88be4e1-2e10-49e5-8193-e407e217192d">
           <value>
             <State>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -258,6 +373,7 @@
                   </entry>
                 </map>
               </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
             </State>
           </value>
         </entry>
@@ -268,12 +384,6 @@
         </entry>
       </map>
     </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="f88be4e1-2e10-49e5-8193-e407e217192d" value="TOOL_WINDOW" />
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="资源备份" />
