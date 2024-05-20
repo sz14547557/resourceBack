@@ -1,11 +1,10 @@
 C51CD8E64B0AEB778364765013DF9EBE
 
 <q123456>
-UPDATE [dbo].[SYS_USER] set PASSWORD='C51CD8E64B0AEB778364765013DF9EBE'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin','001','kyyplgtest','configadmin8561','superadmin8561','logadmin8561','superadmin8563','configadmin8563')
+UPDATE [dbo].[SYS_USER] set PASSWORD='C51CD8E64B0AEB778364765013DF9EBE'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin','001','kyyplgtest','configadmin8561','superadmin8561','logadmin8561','admin8561','superadmin8563','configadmin8563','admin8563')
 
 <q123456!>
-UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin','001','kyyplgtest','configadmin8561','superadmin8561','logadmin8561','superadmin8563','configadmin8563')
-
+UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin','001','kyyplgtest','configadmin8561','superadmin8561','logadmin8561','admin8561','superadmin8563','configadmin8563','admin8563')
 
 
  <a href="${contextPath}/userAction!to_eplg.action">管理员登录</a>
