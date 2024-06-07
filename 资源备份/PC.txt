@@ -27,3 +27,4 @@ schoolDays
 shinyDays
 拔岛1
 博德之门3
+crossDays
