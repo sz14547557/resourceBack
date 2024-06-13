@@ -56,6 +56,9 @@
 
         // 直到异步任务全部执行完毕，才会执行下一条语句
         CompletableFuture.allOf(futureList.toArray(new CompletableFuture[]{})).join();
+        //异步任务只要有一个执行完毕，才会执行下一条语句
+        // CompletableFuture.anyOf(futureList.toArray(new CompletableFuture[]{})).join();
+
         // 50 万条
         stopWatch.stop();
         System.out.println(stopWatch.getTotalTimeMillis());
