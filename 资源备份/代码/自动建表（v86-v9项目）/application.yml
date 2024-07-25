@@ -1,0 +1,203 @@
+server:
+  port: ${tomcat.port:8080}
+  servlet:
+    context-path: ${tomcat.name:/rdsysedu}
+    session:
+      timeout: 7200
+    jsp:
+      init-parameters:
+        development: ${tomcat.development:false}
+  tomcat:
+    uri-encoding: UTF-8
+#  error:
+#    path: /system/errorPage
+
+# 演示模式开关
+demo-mode: false
+
+spring:
+  profiles:
+    active: dev
+  jackson:
+    time-zone: GMT+8
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+    hiddenmethod:
+      filter:
+        enabled: true
+    static-path-pattern: /**
+    pathmatch:
+      # Springboot2.6处理映射匹配的默认策略已从AntPathMatcher更改为PathPatternParser
+      matching-strategy: ant_path_matcher
+  web:
+    resources:
+      static-locations: /static/theme/, /static/edu/, /static/core
+      chain:
+        strategy:
+          content:
+            enabled: true
+            paths: /**
+        cache: true
+        compressed: false
+        enabled: true
+      cache:
+        cachecontrol:
+          cache-public: true
+  datasource:
+    primary:
+      url: ${jdbc.url:jdbc:oracle:thin:@localhost:1521:orcl}
+      username: ${jdbc.username:rdsysedu}
+      password: ${jdbc.password:eplugger}
+      driver-class-name: ${jdbc.driverClassName:oracle.jdbc.OracleDriver}
+      filters: stat,wall # stat,log4j,wall
+      initialSize: 5
+      minIdle: 5
+      maxActive: ${jdbc.maxActive:20}
+      maxWait: 60000 #最大连接等待超时时间（毫秒）
+      #打开PScache，并指定每个PScache连接的大小
+      poolPreparedStatements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      #打开mergeSql功能，开启执行超5秒的sql记录
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=3000
+      timeBetweenEvictionRunsMillis: 600000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: ${jdbc.validationQuery:select 1 from dual}
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      maxOpenPreparedStatements: 20
+    cwdb:
+      url: ${cwjdbc.url:jdbc:oracle:thin:@localhost:1521:orcl}
+      username: ${cwjdbc.username:rdsysedu}
+      password: ${cwjdbc.password:eplugger}
+      driver-class-name: ${cwjdbc.driverClassName:oracle.jdbc.OracleDriver}
+      filters: stat,wall
+      initialSize: 2
+      minIdle: 2
+      maxActive: ${cwjdbc.maxActive:20}
+      #最大连接等待超时时间（毫秒）
+      maxWait: 60000
+      #打开PScache，并指定每个PScache连接的大小
+      poolPreparedStatements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      #打开mergeSql功能，开启执行超5秒的sql记录
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=3000
+      timeBetweenEvictionRunsMillis: 600000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: ${cwjdbc.validationQuery:select 1 from dual}
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      maxOpenPreparedStatements: 20
+#      添加自动建表的配置，在update操作时更新数据表
+  jpa:
+    properties:
+      hibernate:
+        dialect: ${jdbc.dialect:com.eplugger.service.dao.dialect.OracleDialect}
+        cwDialect: ${cwjdbc.dialect:com.eplugger.service.dao.dialect.OracleDialect}
+        show_sql: ${jdbc.showSql:true}
+        format_sql: false
+        ddl-auto: update
+        highlight_sql: true
+        schema_update:
+          unique_constraint_strategy: SKIP
+        hbm2ddl:
+          auto: update
+          jdbc_metadata_extraction_strategy: individually
+          charset_name: utf8
+          default_constraint_mode: NO_CONSTRAINT
+    hibernate:
+        ddl-auto: update
+        #        physical_naming_strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        #        physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+        physical_naming_strategy: com.eplugger.config.jpa.CamelCaseToUpCaseUnderscoresNamingStrategy
+    generate-ddl: false
+    open-in-view: true
+
+
+
+  data:
+    mongodb:
+      uri: ${mongodb.uri:mongodb://root:eplugger@localhost:27017/admin}
+      database: ${mongodb.database:rdsysedu}
+  quartz:
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: quartzScheduler
+            instanceId: AUTO
+            threadPool:
+              class: org.quartz.simpl.SimpleThreadPool
+              threadCount: 10
+              threadPriority: 5
+              threadsInheritContextClassLoaderOfInitializingThread: true
+  sql:
+    init:
+      mode: never
+  jmx:
+    enabled: false
+  freemarker:
+    check-template-location: false
+
+#  main:
+#    # SpringBoot2.6默认禁止Spring Bean之间的循环注入
+#    allow-circular-references: true
+#  cache:
+#    type: ehcache
+#    ehcache:
+#      config: classpath:/ehcache.xml
+#jwt
+jwt:
+  header: Authorization
+  # 令牌前缀
+  token-start-with: Bearer
+  # 必须使用最少88位的Base64对该令牌进行编码
+  base64-secret: RUJBQjZERjNGODlBNDk1OTkxMEUyQUREQ0UwNTAyNUEwMjNCNzBCRURBQ0I0RkJFQkY2RTQ0MzZENjg1MjBCN0UyNTdFQTg1MTk2NTQ1MzA4QTg3MjM1NUQ3QTFCOEZBQjUxN0E4QTJEMERDNEU4MjhFOUVDRjhEOTU3RTBEODU=
+  # 令牌过期时间 此处单位/毫秒 ，默认30分钟，可在此网站生成 https://www.convertworld.com/zh-hans/time/milliseconds.html
+  token-validity-in-seconds: 1800000
+system:
+  pool:
+    # 核心线程池大小
+    core-pool-size: 10
+    # 最大线程数
+    max-pool-size: 30
+    # 活跃时间
+    keep-alive-seconds: 60
+    # 队列容量
+    queue-capacity: 50
+# 系统监控
+management:
+  endpoints:
+    web:
+      discovery:
+        enabled: false
+springdoc:
+  # 单个分组使用：指定扫描包路径，多个用逗号 "," 隔开，多个分组使用 group-configs
+  packages-to-scan: com.eplugger.api
+  # 单个分组使用：指定包含的路径，多个用逗号 "," 隔开
+  paths-to-match: /api/**
+
+# cookie失效时间 暂未使用
+cookie-max-age: 1800000
+
+# 文件上传路径
+storage-dir: /eplugger/uploadFile
+
+# 需加密的属性，所有命名为此名称的属性均会被加密
+# 属性名应从最高层级写起，每层之间用.隔开
+# 支持多个属性配置，属性间逗号隔开
+encrypt-prop: jdbc.password,cwjdbc.password
+# 需要显示定义为空，登录图片验证码下方水印
+aj.captcha.water-mark :
+
+# 专利大数据平台
+ai:
+  patent:
+    auth:
+      api: http://221.238.56.227:8088
+#      api: http://localhost:80
+      api-key: 10003
+      api-secret: r,ocL:2QQiw$
