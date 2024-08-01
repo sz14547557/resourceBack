@@ -36,6 +36,8 @@ kill pid
 
 并签只要有一个通过就可以通过，会签必须全部通过才可以通过。
 
+
+// sz※为字段绑定事件
 $("#entity\\.previousProject_").on("change", changePreviousProject);
 
 function changePreviousProject(){
@@ -53,7 +55,7 @@ function changePreviousProject(){
 
 ####
 
-截取字符串的sql
+// sz※ 截取字符串的sql
   //先截取前缀，再截取后缀。对获取的流水号进行最大值的判断，保证出现 9999 和 10000时能正确获取最大值为10000
             String sql = "";
             if (DBUtils.isSqlServer()) {
@@ -69,7 +71,7 @@ function changePreviousProject(){
 
 
 
-批处理配合异步执行任务操作，可以只保留异步执行操作
+// sz※ 批处理配合异步执行任务操作，可以只保留异步执行操作
 
     // 修改线程池参数，不使用默认的线程池
     private ExecutorService executorService = new ThreadPoolExecutor(40, 1000, 10000, TimeUnit.MINUTES, new ArrayBlockingQueue<>(10000));
@@ -137,8 +139,57 @@ function changePreviousProject(){
         }
 
 
-前端出现msg未定义问题如何解决？
+// sz※ 前端出现msg未定义问题如何解决？
 	ep.workflowCheck 解析的data参数不对，指定格式为Json
+
+
+// sz※ 在test条件中添加审核状态
+<e:operate  href="${actionPath}!to_projectDocument.action?entity.id=^{id}" label="聘书附件上传" pop="true" popConfig="{'width':'80%','height':'95%','title':'聘书附件上传'}" test="${e:userInfo().teacher}&& ^{checkStatus} == '2'"/>
+
+
+
+			// sz※ 清除对应不需要展示的下拉列表字典数据
+
+            hideAllSelectProjectTypeId();
+			$("select[name='entity.projectTypeId']").each(function () {
+				// 将字符串通过逗号转为数组并进行遍历，获取对应的值
+				for (const x of projectTypeId.split(",")) {
+					$("select[name='entity.projectTypeId'] option[value="+x+"]").show();
+				};
+			});
+
+		//隐藏全部的项目分类字典
+		function hideAllSelectProjectTypeId(){
+			// var length=$("select[name='entity.projectTypeId'] option").length;
+
+			$("select[name='entity.projectTypeId'] option").each(function () {
+				// alert($(this).val());
+				$(this).hide();
+			});
+
+		}
+
+
+// sz※ 判断附件是否上传和编辑附件的操作按钮
+// 初始化时保存：方案审查工作表（standby3） 和 知情同意审查工作表（standby4）的初始值，在提交时判断当前评审专家是否提交
+	initialStandBy3 = $("button[name='"+businessType+".standby3_upload']").parent().next().next().children().length;
+	initialStandBy4 = $("button[name='"+businessType+".standby4_upload']").parent().next().next().children().length;
+
+	// alert(initialStandBy3+"??"+initialStandBy4+"!!");
+
+
+
+
+	//屏蔽伦理报告的下载按钮 和删除按钮
+	$(".ep-upload-list-item").find("[name='zxProjectEthics.fileId']").next().find(".ep-upload-operate-delete").hide();
+	$(".ep-upload-tip").hide();
+	$("[name='zxProjectEthics.fileId_upload']").hide();
+	/*初始伦理审查文件不能下载  */
+	  $("#resultEditTable").find("td[name='fileId']").find(".ep-upload-operate-delete").hide();
+
+	$("[name='zxProjectEthics.fileIdPS_upload']").hide();
+	$(".ep-upload-list-item").find("[name='zxProjectEthics.fileIdPS']").next().find(".ep-upload-operate-delete").hide();
+
 
 
 1.同步和阻塞的区别是什么？
