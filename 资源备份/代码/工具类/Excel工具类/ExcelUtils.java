@@ -30,22 +30,29 @@ public class ExcelUtils {
      * @return
      */
     public static String excelToCsv(MultipartFile multipartFile) {
-//        File file = null;
-//        try {
-//            file = ResourceUtils.getFile("classpath:网站数据.xlsx");
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-        // 读取数据
+//         获取本地文件
+        File file = null;
+        try {
+            //
+            file = ResourceUtils.getFile("classpath:网站数据.xlsx");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        // 通过EasyExcel 读取数据  。如果是多个文件可以通过多线程进行异步读取
         List<Map<Integer, String>> list = null;
         try {
-            list = EasyExcel.read(multipartFile.getInputStream())
+            // list = EasyExcel.read(multipartFile.getInputStream())
+            list = EasyExcel.read(file)
                     .excelType(ExcelTypeEnum.XLSX)
                     .sheet()
                     .headRowNumber(0)
                     .doReadSync();
-        } catch (IOException e) {
-            log.error("表格处理错误", e);
+        }
+        // catch (IOException e) {
+        //     log.error("表格处理错误", e);
+        // }
+        catch (Exception e) {
+
         }
         if (CollUtil.isEmpty(list)) {
             return "";
