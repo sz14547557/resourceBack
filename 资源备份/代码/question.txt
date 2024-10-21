@@ -74,6 +74,8 @@ function changePreviousProject(){
 
             sql = sql.replaceAll(":attr", columnName).replace(":tableName", tableName).replace(":val", sb.toString());
 
+导入时如何处理的负责人信息？
+在ProjectExcelImpProcess类中的processCell中对负责人信息进行了处理，processCell代表对导入数据的预处理，后面所有模块数据在导入时都可以扩展这个
 
 
 // sz※ 批处理配合异步执行任务操作，可以只保留异步执行操作
