@@ -2,3 +2,5 @@
 视图修改需先启动一次后覆盖
 
 webxml配置 classpath*:applicationContext-patch.xml
+
+<param-value>classpath*:resource/spring/applicationContext*.xml,classpath*:applicationContext-patch.xml</param-value>
