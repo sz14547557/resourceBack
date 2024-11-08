@@ -85,4 +85,36 @@ public class NetUtils {
             return "";
         }
     }
+
+
+    // 实现重定向操作
+    public void sendRedirect01(String url) {
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html");
+        String redir = "http://10.120.32.18:9090/cas/login?service=http://10.120.35.38:8080/casLogin.action";
+        out.write("<script>window.top.location.href='" + redir + "';</script>");
+        return NONE;
+    }
+    public void sendRedirect02(String url) {
+        response.sendRedirect(request.getContextPath() + "/userAction!to_login.action");
+        return NONE;
+    }
+    public void sendRedirect03(String url) {
+        // 通过跳转到界面，进行
+        // <script>
+        //     window.location.replace("http://10.120.32.18:9090/cas/login?service=http://10.120.35.38:8080/casLogin.action");
+        // </script>
+        // 方法调用实现重定向
+        return NONE;
+    }
+
+
+    // 实现转发forward操作
+    public void forward01(String url) {
+        String dispatcherPage = "/system/frame.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(dispatcherPage);
+        dispatcher.forward(request, response);
+        return NONE;
+    }
+
 }

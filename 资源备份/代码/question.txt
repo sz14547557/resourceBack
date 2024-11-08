@@ -42,6 +42,9 @@ com.eplugger.system.role.user.bo.BaseUserBO.getCurUserInfo().getUser().getGroups
 并签只要有一个通过就可以通过，会签必须全部通过才可以通过。
 
 
+//jar cvf  生成的jar包名称 -c 要进行打包的文件夹名称 .
+jar cvf eadp5-5.9.16.1.jar -C eadp5-5.9.16.1 .
+
 // sz※为字段绑定事件
 $("#entity\\.previousProject_").on("change", changePreviousProject);
 
