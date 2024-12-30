@@ -77,6 +77,10 @@ function changePreviousProject(){
 
             sql = sql.replaceAll(":attr", columnName).replace(":tableName", tableName).replace(":val", sb.toString());
 
+
+去掉字符串的最后一位
+(nameBuilder.substring(0,nameBuilder.length()-1))
+
 导入时如何处理的负责人信息？
 在ProjectExcelImpProcess类中的processCell中对负责人信息进行了处理，processCell代表对导入数据的预处理，后面所有模块数据在导入时都可以扩展这个
 
@@ -152,6 +156,9 @@ function changePreviousProject(){
 // sz※ 前端出现msg未定义问题如何解决？
 	ep.workflowCheck 解析的data参数不对，指定格式为Json
 
+邮件没有发送的问题解决：
+-- 邮箱处理，将邮件的发送方法添加到系统的登录请求验证参数上
+UPDATE SYS_PARAM set PMVAL='userAction!to_eplg,userAction!do_eplg,userAction!to_login,userAction!do_login,userAction!to_scanConfirmLogin,userAction!to_getLoginQrCode,userAction!to_scanCodeLogin,userAction!do_scanCodeLogin,userAction!do_sendMessage,userAction!do_checkFirstLogin,userAction!do_casLogin,imageInDBAction!to_displayLogo,appSettingAction!to_getQrCode,userAction!do_loginoff,errorAction!to_error,resetPasswordAction,userAction!to_forgetEmail,userAction!do_queryForgetEmail,mobileMessageAction!to_open,userAction!do_sendVerificationCodeToEmail' WHERE PMKEY='doNotNeedToCheckTheAction'
 
 // sz※ 在test条件中添加审核状态
 <e:operate  href="${actionPath}!to_projectDocument.action?entity.id=^{id}" label="聘书附件上传" pop="true" popConfig="{'width':'80%','height':'95%','title':'聘书附件上传'}" test="${e:userInfo().teacher}&& ^{checkStatus} == '2'"/>
