@@ -1,0 +1,13 @@
+打开Ollama官网 https://ollama.com/download  下载Ollama
+
+在cmd中输入ollama,测试是否安装成功
+
+执行deepseek-r1:7b的模型:如果没有则会下载到本地，如果已存在则可以直接使用
+ollama run deepseek-r1:7b
+
+
+问答界面美化插件：Page Assit
+启动ollama服务后，输入快捷键【ctrl + shift+L】快捷键即可打开WebUI页面，在新开界面中进行对话
+
+使用RAG对自定义本地部署deepSeek进行数据投喂：
+ollama pull nomic-embed-text
