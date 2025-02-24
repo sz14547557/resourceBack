@@ -211,6 +211,12 @@ UPDATE SYS_PARAM set PMVAL='userAction!to_eplg,userAction!do_eplg,userAction!to_
 
 
 
+    对文件附件添加必填校验
+	if("${entity.projectClass}" != "zXProject"){//添加必填校验  只有横向项目和校级项目才添加必填校验
+	ep.addValidator($("button[name='entity.alterFileId_upload']"), true);
+	}
+
+
 1.同步和阻塞的区别是什么？
 2.线程池的问题？
 3.对象头的作用？对象头的组成是什么？（需要理解锁的知识）
