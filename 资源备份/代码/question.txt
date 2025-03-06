@@ -6,7 +6,7 @@ C51CD8E64B0AEB778364765013DF9EBE
 UPDATE [dbo].[SYS_USER] set PASSWORD='C51CD8E64B0AEB778364765013DF9EBE'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin','001','kyyplgtest','configadmin8561','superadmin8561','logadmin8561','admin8561','superadmin8563','configadmin8563','admin8563')
 
 <q123456!>
-UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin','001','kyyplgtest','configadmin8561','superadmin8561','logadmin8561','admin8561','superadmin8563','configadmin8563','admin8563','sp900a','lg900a','cf900a','am900a','Tj20231030','2000','0085','0185')
+UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin','001','kyyplgtest','configadmin8561','superadmin8561','logadmin8561','admin8561','superadmin8563','configadmin8563','admin8563','sp900a','lg900a','cf900a','am900a','Tj20231030','2000','0085','0185','configadmin857','superadmin857','logadmin857','admin857','001','002')
 
  <a href="${contextPath}/userAction!to_eplg.action">管理员登录</a>
  <a href="${contextPath}/userAction!to_login.action">科研登录</a>
@@ -216,6 +216,68 @@ UPDATE SYS_PARAM set PMVAL='userAction!to_eplg,userAction!do_eplg,userAction!to_
 	ep.addValidator($("button[name='entity.alterFileId_upload']"), true);
 	}
 
+
+对可编辑表格设置多个可编辑（选择器选择多个属性：[name$=division],[name$=standby1],[name$=standby2],[name$=standby3]）：
+			$(target).find("input:visible,textarea").not("[name$=division],[name$=standby1],[name$=standby2],[name$=standby3]").prop("readonly", true)
+				.end().end().find("[type=radio],[type=checkbox],[type=file],select").filter(":visible").prop("disabled", true)
+				.end().end().find("a").remove().end().find("[datepicker]").removeAttr("datepicker").datetimepicker('remove');
+
+模板打印时添加多个成员打印操作：
+
+// 成员模板列只有一行 需要往后面填充
+		List<ProjectApplyBookMember> members = book.getProjectApplyBookMembers();
+		List<Instructor> instructorMembers = book.getInstructorMembers();
+
+		if (!CollectionUtils.isEmpty(members)) {
+			for (Node rowNode : documentHeader.getChildNodes(NodeType.ROW, true).toArray()) {
+				if (rowNode.getRange().getText().contains("^{多行:成员")) {
+					Row row = (Row) rowNode;
+					for (int i = 0; i < members.size(); i++) {
+						Row extendRow =  (Row) row.deepClone(true);
+						FindReplaceOptions options = new FindReplaceOptions();
+						options.setMatchCase(true);
+						options.setFindWholeWordsOnly(false);
+						extendRow.getRange().replace("^{多行:成员", "^{多行:成员[" + (i)+"]", options);
+						row.getParentTable().insertBefore(extendRow, row);
+					}
+					row.remove();
+					// break;
+				}
+
+
+				//  sz※ 这个只是用来替换对应的数据为i ,在后面还需要进行处理
+				if (rowNode.getRange().getText().contains("^{多行:指导")) {
+					Row row = (Row) rowNode;
+					for (int i = 0; i < instructorMembers.size(); i++) {
+						Row extendRow =  (Row) row.deepClone(true);
+						FindReplaceOptions options = new FindReplaceOptions();
+						options.setMatchCase(true);
+						options.setFindWholeWordsOnly(false);
+						extendRow.getRange().replace("^{多行:指导", "^{多行:指导[" + (i)+"]", options);
+						row.getParentTable().insertBefore(extendRow, row);
+					}
+					row.remove();
+					// break;
+				}
+
+
+			}
+		}
+
+
+//修改	替换规则，getEditableVal里面需要对应元数据的场景，这里可以灵活选择，如果多个成员有共有属性，则取一个场景即可
+public int replacing(ReplacingArgs rep) throws Exception {
+           if (p.startsWith("多行:指导")) {
+				int index = Integer
+						.valueOf(StringUtils.substringBefore(StringUtils.substringAfter(p, "多行:指导["), "]"));
+				p = StringUtils.substringAfterLast(p, "].");
+				// sz※ 此处看看对应的属性名是否正确
+				rep.setReplacement(getEditableVal(p, book.getInstructorMembers().get(index)));
+			}
+}
+
+
+待办列表编辑显示有问题处理： 直接定义在BaseToDoProvider中，判断当前groupId是否有编辑删除权限
 
 1.同步和阻塞的区别是什么？
 2.线程池的问题？
