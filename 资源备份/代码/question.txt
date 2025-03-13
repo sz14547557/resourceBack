@@ -15,10 +15,6 @@ UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE a
 <button class="ep_btn" onclick="window.location.href='${contextPath}/system/user/cfg/login'">管理员登录</button>
 <button class="ep_btn" onclick="window.location.href='${contextPath}/system/user/login'">普通登录</button>
 
-业务过滤如果配了【只读】，则科研人员无法进行编辑和删除。需要将业务过滤改为【可写】
-
-对于数据的操作权限，在下面进行判断，如果不满足也是无法显示编辑和删除的
-return getCheckRule(entity).checkWrite(entity);
 
 使用@AppendSearch注解查询时，需要重启项目才会生效。
 
@@ -47,7 +43,12 @@ com.eplugger.system.role.user.bo.BaseUserBO.getCurUserInfo().getUser().getGroups
 //jar cvf  生成的jar包名称 -c 要进行打包的文件夹名称 .
 jar cvf eadp5-5.9.16.1.jar -C eadp5-5.9.16.1 .
 
-// sz※为字段绑定事件
+//todo sz※ 业务过滤如果配了【只读】，则科研人员无法进行编辑和删除。需要将业务过滤改为【可写】
+
+//todo sz※对于数据的操作权限，在下面进行判断，如果不满足也是无法显示编辑和删除的
+return getCheckRule(entity).checkWrite(entity);
+
+// todo sz※为字段绑定事件
 $("#entity\\.previousProject_").on("change", changePreviousProject);
 
 function changePreviousProject(){
@@ -65,7 +66,7 @@ function changePreviousProject(){
 
 ####
 
-// sz※ 截取字符串的sql
+// todo sz※ 截取字符串的sql
   //先截取前缀，再截取后缀。对获取的流水号进行最大值的判断，保证出现 9999 和 10000时能正确获取最大值为10000
             String sql = "";
             if (DBUtils.isSqlServer()) {
@@ -80,14 +81,14 @@ function changePreviousProject(){
             sql = sql.replaceAll(":attr", columnName).replace(":tableName", tableName).replace(":val", sb.toString());
 
 
-去掉字符串的最后一位
+//todo sz※ 去掉字符串的最后一位
 (nameBuilder.substring(0,nameBuilder.length()-1))
 
-导入时如何处理的负责人信息？
+//todo sz※导入时如何处理的负责人信息？
 在ProjectExcelImpProcess类中的processCell中对负责人信息进行了处理，processCell代表对导入数据的预处理，后面所有模块数据在导入时都可以扩展这个
 
 
-// sz※ 批处理配合异步执行任务操作，可以只保留异步执行操作
+// todo sz※ 批处理配合异步执行任务操作，可以只保留异步执行操作
 
     // 修改线程池参数，不使用默认的线程池
     private ExecutorService executorService = new ThreadPoolExecutor(40, 1000, 10000, TimeUnit.MINUTES, new ArrayBlockingQueue<>(10000));
@@ -155,14 +156,14 @@ function changePreviousProject(){
         }
 
 
-// sz※ 前端出现msg未定义问题如何解决？
+// todo sz※ 前端出现msg未定义问题如何解决？
 	ep.workflowCheck 解析的data参数不对，指定格式为Json
 
-邮件没有发送的问题解决：
+//todo sz※ 邮件没有发送的问题解决：
 -- 邮箱处理，将邮件的发送方法添加到系统的登录请求验证参数上
 UPDATE SYS_PARAM set PMVAL='userAction!to_eplg,userAction!do_eplg,userAction!to_login,userAction!do_login,userAction!to_scanConfirmLogin,userAction!to_getLoginQrCode,userAction!to_scanCodeLogin,userAction!do_scanCodeLogin,userAction!do_sendMessage,userAction!do_checkFirstLogin,userAction!do_casLogin,imageInDBAction!to_displayLogo,appSettingAction!to_getQrCode,userAction!do_loginoff,errorAction!to_error,resetPasswordAction,userAction!to_forgetEmail,userAction!do_queryForgetEmail,mobileMessageAction!to_open,userAction!do_sendVerificationCodeToEmail' WHERE PMKEY='doNotNeedToCheckTheAction'
 
-// sz※ 在test条件中添加审核状态
+//todo sz※ 在test条件中添加审核状态
 <e:operate  href="${actionPath}!to_projectDocument.action?entity.id=^{id}" label="聘书附件上传" pop="true" popConfig="{'width':'80%','height':'95%','title':'聘书附件上传'}" test="${e:userInfo().teacher}&& ^{checkStatus} == '2'"/>
 
 
@@ -189,7 +190,7 @@ UPDATE SYS_PARAM set PMVAL='userAction!to_eplg,userAction!do_eplg,userAction!to_
 		}
 
 
-// sz※ 判断附件是否上传和编辑附件的操作按钮
+// todo sz※ 判断附件是否上传和编辑附件的操作按钮
 // 初始化时保存：方案审查工作表（standby3） 和 知情同意审查工作表（standby4）的初始值，在提交时判断当前评审专家是否提交
 	initialStandBy3 = $("button[name='"+businessType+".standby3_upload']").parent().next().next().children().length;
 	initialStandBy4 = $("button[name='"+businessType+".standby4_upload']").parent().next().next().children().length;
@@ -211,18 +212,19 @@ UPDATE SYS_PARAM set PMVAL='userAction!to_eplg,userAction!do_eplg,userAction!to_
 
 
 
-    对文件附件添加必填校验
+    //todo sz※对文件附件添加必填校验
 	if("${entity.projectClass}" != "zXProject"){//添加必填校验  只有横向项目和校级项目才添加必填校验
 	ep.addValidator($("button[name='entity.alterFileId_upload']"), true);
 	}
 
 
-对可编辑表格设置多个可编辑（选择器选择多个属性：[name$=division],[name$=standby1],[name$=standby2],[name$=standby3]）：
+//todo sz※对可编辑表格设置多个可编辑（选择器选择多个属性：[name$=division],[name$=standby1],[name$=standby2],[name$=standby3]）：
+
 			$(target).find("input:visible,textarea").not("[name$=division],[name$=standby1],[name$=standby2],[name$=standby3]").prop("readonly", true)
 				.end().end().find("[type=radio],[type=checkbox],[type=file],select").filter(":visible").prop("disabled", true)
 				.end().end().find("a").remove().end().find("[datepicker]").removeAttr("datepicker").datetimepicker('remove');
 
-模板打印时添加多个成员打印操作：
+//todo sz※模板打印时添加多个成员打印操作：
 
 // 成员模板列只有一行 需要往后面填充
 		List<ProjectApplyBookMember> members = book.getProjectApplyBookMembers();
@@ -265,7 +267,7 @@ UPDATE SYS_PARAM set PMVAL='userAction!to_eplg,userAction!do_eplg,userAction!to_
 		}
 
 
-//修改	替换规则，getEditableVal里面需要对应元数据的场景，这里可以灵活选择，如果多个成员有共有属性，则取一个场景即可
+//todo sz※修改	替换规则，getEditableVal里面需要对应元数据的场景，这里可以灵活选择，如果多个成员有共有属性，则取一个场景即可
 public int replacing(ReplacingArgs rep) throws Exception {
            if (p.startsWith("多行:指导")) {
 				int index = Integer
@@ -275,6 +277,40 @@ public int replacing(ReplacingArgs rep) throws Exception {
 				rep.setReplacement(getEditableVal(p, book.getInstructorMembers().get(index)));
 			}
 }
+
+//todo sz※在查询结果集时添加根据对某个字段的排序，并返回结果
+
+@Override
+	public String to_list() {
+		recoverFromAccessLog(null);
+		Lecture e = getEntity();
+		if (StringUtils.isBlank(quickSearch)) {
+			quickSearch = QueryUtil.getDefaultQuickSearchId(getBeanId(), StrutsUtil.getActionName());
+		}
+		ConditionList conditions = bo.resolveCondition(e, intRanges, doubleRanges, dateRanges, rangeExpress, expressQueryBeanIds, quickSearch, multiQueryConditions, fuzzyElements);
+		conditions.addAll(bo.getCustomCondition(e, getReqParamMap()));
+
+		List<Lecture> list = new ArrayList<>();
+		try {
+			//  处理对应查询，以开始日期进行倒叙
+
+			OrderElementList oLs = new OrderElementList();
+			oLs.add(new OrderElement(1, "standby2", false));
+
+			list = bo.getEntities(e, conditions, getPagination(), appendSearchAttr,oLs);
+
+		} catch (Exception ex) {
+			LOG.error("{}查询sql出错{}", ExceptionLogUtils.generateErrorCode(SQLException.class.getName()), ExceptionLogUtils.getExceptionMsg(ex));
+			getPagination().setTotalRows(-1);
+		}
+		setRequestAttribute(RESULT_LIST, list);
+		return "list";
+	}
+
+		public List<Lecture> getEntities(Lecture queryE, ConditionList cl, Pagination pagination, AppendSearchAttr appendSearchAttr, List<OrderElement> oLs) {
+    		return dao.getList(queryE.getClass(), cl, oLs, pagination, appendSearchAttr);
+    	}
+
 
 
 待办列表编辑显示有问题处理： 直接定义在BaseToDoProvider中，判断当前groupId是否有编辑删除权限
