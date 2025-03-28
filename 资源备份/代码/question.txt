@@ -318,6 +318,12 @@ UPDATE SYS_USER set AUTHORITY='CDF25BF702AD87A8E04010AC04016824,CDF25BF702AF87A8
 
 待办列表编辑显示有问题处理： 直接定义在BaseToDoProvider中，判断当前groupId是否有编辑删除权限
 
+可编辑表格在实体与成员关联添加时无法保存问题的问题：必须保证实体类名与 属性名一致，不能偷懒不改属性名，底层通过反射获取对应bean的属性名
+    private MaterialCollection materialCollection;//这样是对的
+    private MaterialCollection projectApplyBook;//这样就不对，会出现可编辑表格无法存值的问题
+
+
+
 1.同步和阻塞的区别是什么？
 2.线程池的问题？
 3.对象头的作用？对象头的组成是什么？（需要理解锁的知识）
