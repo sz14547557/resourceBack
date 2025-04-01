@@ -15,6 +15,10 @@ UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE a
 <button class="ep_btn" onclick="window.location.href='${contextPath}/system/user/cfg/login'">管理员登录</button>
 <button class="ep_btn" onclick="window.location.href='${contextPath}/system/user/login'">普通登录</button>
 
+//cloudflare通过picGo的令牌和密钥
+aa2d0cdf1a2d5de6ea93383c66705d77
+
+82a34449277907b7ebec9bf858847b2d1f1e52aa9c7f058931b8954ac254c829
 
 使用@AppendSearch注解查询时，需要重启项目才会生效。
 
@@ -311,6 +315,8 @@ public int replacing(ReplacingArgs rep) throws Exception {
     		return dao.getList(queryE.getClass(), cl, oLs, pagination, appendSearchAttr);
     	}
 
+//todo sz※ 在新增成员模块时，需要注意手动新增成员模块对应实体模块的id字段作为隐藏域
+//todo sz※ 这个隐藏域如果没生效，看看配置的类型是不是文本框 看看对应的name定义是否正确
 
 configadmin中列表的操作权限在AuthorityUtil中的 public static boolean hasAuthority(String beanId, String key) 方法上,看为什么返回的是个false
 -- 将configadmin的权限添加编号规则权限
