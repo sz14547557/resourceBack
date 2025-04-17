@@ -328,6 +328,26 @@ UPDATE SYS_USER set AUTHORITY='CDF25BF702AD87A8E04010AC04016824,CDF25BF702AF87A8
     private MaterialCollection materialCollection;//这样是对的
     private MaterialCollection projectApplyBook;//这样就不对，会出现可编辑表格无法存值的问题
 
+//todo sz※  字符串日期改为sqlDate日期
+			Date.valueOf(date);
+
+public static boolean isBeforeStopDate(java.util.Date stopDate) {
+    String todayStr = new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
+    Calendar today = Calendar.getInstance();
+    today.setTime(Date.valueOf(todayStr));
+
+    Calendar stop = Calendar.getInstance();
+    stop.setTime(stopDate);
+
+    return today.before(stop);
+}
+
+//todo sz※ 根据ids查询数据
+
+		String ids = getRequestParameter("ids");
+		ids = (ids.substring(0, ids.length() - 1));
+		Serializable[] id = ids.split(",");
+		List<XJProject> listByIds = dao.getListByIds(XJProject.class, id, null);
 
 
 1.同步和阻塞的区别是什么？
