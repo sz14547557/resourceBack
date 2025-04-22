@@ -6,7 +6,7 @@ C51CD8E64B0AEB778364765013DF9EBE
 UPDATE [dbo].[SYS_USER] set PASSWORD='C51CD8E64B0AEB778364765013DF9EBE'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin','001','kyyplgtest','configadmin8561','superadmin8561','logadmin8561','admin8561','superadmin8563','configadmin8563','admin8563')
 
 <q123456!>
-UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin','001','kyyplgtest','configadmin8561','superadmin8561','logadmin8561','admin8561','superadmin8563','configadmin8563','admin8563','sp900a','lg900a','cf900a','am900a','Tj20231030','2000','0085','0185','configadmin857','superadmin857','logadmin857','admin857','001','002')
+UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin','001','kyyplgtest','configadmin8561','superadmin8561','logadmin8561','admin8561','superadmin8563','configadmin8563','admin8563','sp900a','lg900a','cf900a','am900a','Tj20231030','2000','0085','0185','configadmin857','superadmin857','logadmin857','admin857','001','002','20180501')
 
  <a href="${contextPath}/userAction!to_eplg.action">管理员登录</a>
  <a href="${contextPath}/userAction!to_login.action">科研登录</a>
