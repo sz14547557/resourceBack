@@ -349,6 +349,9 @@ public static boolean isBeforeStopDate(java.util.Date stopDate) {
 		Serializable[] id = ids.split(",");
 		List<XJProject> listByIds = dao.getListByIds(XJProject.class, id, null);
 
+//todo sz※ 刷新评审状态
+UPDATE BIZ_EXPERT_REVIEW set REVIEW_STATUS='notReview'
+
 
 1.同步和阻塞的区别是什么？
 2.线程池的问题？
