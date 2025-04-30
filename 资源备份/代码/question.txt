@@ -404,8 +404,77 @@ ALTER USER USR_KY QUOTA UNLIMITED ON users;
         System.out.println(stringInsertByInterval(orginStr2, "') || TO_CLOB('", 2000));
     }
 
+//todo sz※  appendSearch的使用
 
+	@Transient
+	@AppendSearch(value="SELECT PAPER_ID, concat(AUTHOR_NAME,'(',standby1,')') val"
+			+ " FROM BIZ_PAPER_AUTHOR WHERE PAPER_ID IN (^{id}) AND AUTHOR_TYPE !='3' ORDER BY ORDER_ID ", relativeField="PAPER_ID", mergeMultiVals=true)
 
+// todo sz※ 导出代码重写
+
+@NoBackLog
+	public String do_ajaxExportBuild() {
+		String sceneId = getRequestParameter("sceneId");
+		String exportRange = getRequestParameter("exportRange");
+		String ids = getRequestParameter("ids");
+		if (StringUtils.isBlank(sceneId)) {
+			throw new SysException("导出场景未配置");
+		}
+
+		AccessLog log = DispatcherResult.getLastLog(request);//to_export有注解@NoBackLog,不会被记录在访问记录中,所以这里可以得到的上次访问记录是to_list的访问记录
+		if (null != log && null != log.getEntity() && getEntity().getBeanName().equals(log.getEntity().getBeanName())) {
+			recoverFromAccessLog(log);
+		}
+
+		Paper e = getEntity();
+		String uri = log.getUri();
+		if (StringUtils.isBlank(quickSearch)) {
+			quickSearch = QueryUtil.getDefaultQuickSearchId(getBeanId(), uri.substring(0, uri.indexOf(".")));
+		}
+		ConditionList conditions = bo.resolveCondition(e, intRanges, doubleRanges, dateRanges, rangeExpress, expressQueryBeanIds, quickSearch, multiQueryConditions, fuzzyElements);
+		conditions.addAll(bo.getCustomCondition(e, getReqParamMap()));
+		List<Paper> exportEntities = bo.getExportEntities(e, conditions, getPagination(), exportRange, ids, expProperties);
+
+		List<Object[]> idCardList = bo.getIdCard();
+
+		for (Paper exportEntity : exportEntities) {
+
+			List<PaperAuthor> authors = exportEntity.getAuthors();
+			// authors.stream().filter(item -> {
+			// 	return "1".equals(item.getAuthorType());
+			// }).sorted().limit(1).collect(Collectors.toList()).get(0);
+
+			PaperAuthor firstAuthor = authors.stream()
+				.filter(item -> "1".equals(item.getAuthorType()))
+				.sorted((a, b) -> a.getOrderId().compareTo(b.getOrderId()))
+				.findFirst()
+				.orElse(null);
+			if(exportEntity.getFirstAuthorId()!=null){
+				for (Object[] objects : idCardList) {
+					if (exportEntity.getFirstAuthorId().equals(objects[0])){
+						//导出银行卡号
+						exportEntity.setIcCard(objects[1]==null?null:objects[1].toString());
+						//导出科研人员账号
+						exportEntity.setAccount(objects[2]==null?null:objects[2].toString());
+						break;
+					}
+				}
+			}
+			if(firstAuthor!=null){
+				exportEntity.setFirstOrder(firstAuthor.getOrderId()+"/"+authors.size());
+				exportEntity.setFirstSchool(firstAuthor.getAuthorName());
+			}
+		}
+		HSSFWorkbook excel = bo.export(exportEntities, sceneId, expProperties);
+		request.getSession().setAttribute("_excel", excel);
+		try {
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().print("success");
+		} catch (IOException ex) {
+			LOG.error("{}查询sql出错{}", ExceptionLogUtils.generateErrorCode(IOException.class.getName()), ExceptionLogUtils.getExceptionMsg(ex));
+		}
+		return NONE;
+	}
 1.同步和阻塞的区别是什么？
 2.线程池的问题？
 3.对象头的作用？对象头的组成是什么？（需要理解锁的知识）
