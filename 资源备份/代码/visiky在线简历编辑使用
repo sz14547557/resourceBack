@@ -4,7 +4,7 @@
 3.访问简历在线编辑地址(User字段根据需求自定义)：https://visiky.github.io/resume?user=sz14547557&branch=main
 4.通过修改resume.json的内容实现对对简历内容的修改，并在在线网站中自定义展示格式并以PDF方式导出
 
-
+git、数据库分库分表、redis的缓存一致性。ES的使用。面试鸭刷题
 
 //todo sz※ 下面是个人仓库中resume.json的内容
 
