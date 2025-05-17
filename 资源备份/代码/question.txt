@@ -475,6 +475,21 @@ ALTER USER USR_KY QUOTA UNLIMITED ON users;
 		}
 		return NONE;
 	}
+
+//todo sz※  ep通过字典生成一个选择按钮
+<e:select categoryName="REVIEW_RESULT" type="radio" name="entity.reviewResult" value="${entity.reviewResult == null ? 'pass' : entity.reviewResult}"/>
+
+//如果是return SUCCESS 导致的参数无法传递，改用request.getSession().setAttribute 传递参数
+		request.getSession().setAttribute("reviewCountNow", reviewCountNow);
+		return SUCCESS;
+
+
+Intellij IDEA 以sys用户连接Oracle 报错 connection as SYS should be as SYSDBA OR SYSOPER
+用户名sys改成sys as sysdba
+
+//todo sz※ 人事同步如果是Oracle数据库，则使用这种方式进行连接
+update SYS_PARAM set PMVAL='jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = 10.9.40.105)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = UCIT)(failover_mode =(type = select)(method = basic)))) ' where PMKEY='hrjcUrl';
+
 1.同步和阻塞的区别是什么？
 2.线程池的问题？
 3.对象头的作用？对象头的组成是什么？（需要理解锁的知识）
