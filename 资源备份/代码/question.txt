@@ -8,6 +8,11 @@ UPDATE [dbo].[SYS_USER] set PASSWORD='C51CD8E64B0AEB778364765013DF9EBE'  WHERE a
 <q123456!>
 UPDATE [dbo].[SYS_USER] set PASSWORD='16A8E4F58A9BC658843B09D32169D218'  WHERE account in ('10000','1000','superadmin','logadmin','configadmin','001','kyyplgtest','configadmin8561','superadmin8561','logadmin8561','admin8561','superadmin8563','configadmin8563','admin8563','sp900a','lg900a','cf900a','am900a','Tj20231030','2000','0085','0185','configadmin857','superadmin857','logadmin857','admin857','001','002','20180501')
 
+
+//todo sz※ 新增工作流（科研人员→科研秘书→科研处管理员）
+INSERT INTO "SYS_WORK_FLOW_STORAGE" ("ID", "NAME", "BEANID", "WORK_FLOW_JSON", "PERFECT_DATA", "STATE", "EADPDATATYPE", "UPDATE_DATA_BY_WORK_FLOW") VALUES ('2c9081c750ff7f440150ff80ef560008', '媒体成果', 'mediaResults', '{"nodes":{"wf_node_4":{"refuseState":"4","needTemp":"1","top":170,"passState":"13","left":873,"roleId":"4","name":"科研处管理员","width":24,"alt":true,"text":"","type":"task round","height":24},"wf_node_3":{"refuseState":"3","needTemp":"1","top":167,"passState":"1","left":682,"roleId":"3","name":"科研秘书","width":24,"alt":true,"text":"","type":"task round","height":24},"wf_node_2":{"needTemp":"1","top":160,"passState":"0","left":489,"roleId":"2","name":"科研人员","width":24,"alt":true,"text":"","type":"task round","height":24},"wf_node_1":{"top":161,"rname":"开始","left":320,"name":"","width":24,"alt":true,"type":"start round","height":24},"wf_node_5":{"top":170,"rname":"结束","left":1025,"name":"","width":24,"alt":true,"type":"end round","height":24}},"initNum":14,"areas":{},"title":"workFlow","lines":{"wf_line_9":{"condition":"","name":"审核通过","alt":true,"rule":"","dataState":"pass","from":"wf_node_4","to":"wf_node_5","text":"","type":"sl"},"wf_line_7":{"condition":"","name":"已提交","alt":true,"rule":"","dataState":"0","from":"wf_node_2","to":"wf_node_3","text":"","type":"sl"},"wf_line_8":{"condition":"","name":"审核通过","alt":true,"rule":"","dataState":"pass","from":"wf_node_3","to":"wf_node_4","text":"","type":"sl"},"wf_line_6":{"name":"","alt":true,"from":"wf_node_1","to":"wf_node_2","type":"sl"},"wf_line_11":{"condition":"","name":"已提交","alt":true,"rule":"","dataState":"0","from":"wf_node_2","to":"wf_node_4","text":"","type":"tb","M":94},"wf_line_12":{"condition":"","name":"退回修改","alt":true,"rule":"","dataState":"refuse","from":"wf_node_3","to":"wf_node_2","text":"","type":"tb","M":241.5},"wf_line_13":{"condition":"","name":"退回修改","alt":true,"rule":"","dataState":"refuse","from":"wf_node_4","to":"wf_node_2","text":"","type":"tb","M":318}}}', NULL, '1', 'V8.5.2_023', '0');
+
+
  <a href="${contextPath}/userAction!to_eplg.action">管理员登录</a>
  <a href="${contextPath}/userAction!to_login.action">科研登录</a>
 
@@ -490,6 +495,36 @@ Intellij IDEA 以sys用户连接Oracle 报错 connection as SYS should be as SYS
 //todo sz※ 人事同步如果是Oracle数据库，则使用这种方式进行连接
 update SYS_PARAM set PMVAL='jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = 10.9.40.105)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = UCIT)(failover_mode =(type = select)(method = basic)))) ' where PMKEY='hrjcUrl';
 
+
+//todo sz※ Oracle删除全部数据并重新创建数据库
+drop user USR_KY cascade;
+create user USR_KY  identified by 123456;
+ALTER USER USR_KY QUOTA UNLIMITED ON USERS;
+grant create session,resource to USR_KY;
+
+//todo sz※ Mysql删除全部数据并重新创建数据库
+DROP DATABASE RDSYSCAS856320072;
+CREATE DATABASE RDSYSCAS856320072;
+
+//todo sz※ Mysql导入数据出现Got a packet bigger than 'max_allowed_packet' bytes错误
+重新打开一次数据库连接，查看是否生效：
+set global max_allowed_packet = 1048576*10;
+
+SHOW VARIABLES LIKE 'max_allowed_packet';
+
+//todo sz※ 根据指定顺序的字符串数组对集合进行排序。
+
+// 定义论文类型的优先级顺序
+		String[] typeOrder = {"SCIE", "EI", "CSCD核心库", "CSCD扩展库", "科技核心", "一般期刊"};
+
+		// 根据typeOrder数组定义的顺序对thendPaperPublishs进行排序
+		Collections.sort(thendPaperPublishs, (a, b) -> {
+			int indexA = Arrays.asList(typeOrder).indexOf(a.getType());
+			int indexB = Arrays.asList(typeOrder).indexOf(b.getType());
+			return Integer.compare(indexA, indexB);
+		});
+
+//CrossOver 高分辨率操作
 1.同步和阻塞的区别是什么？
 2.线程池的问题？
 3.对象头的作用？对象头的组成是什么？（需要理解锁的知识）
