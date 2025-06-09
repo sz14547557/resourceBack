@@ -524,6 +524,47 @@ SHOW VARIABLES LIKE 'max_allowed_packet';
 			return Integer.compare(indexA, indexB);
 		});
 
+//todo sz※ 单点登录 请求do_casLogin时返回结果为文本而不是界面问题：在CustomAuthenticationFilterForWiscom.java 类中
+
+        String requestedWith = request.getHeader("X-Requested-With");
+        if ("XMLHttpRequest".equals(requestedWith)) {
+            // AJAX请求，返回401或自定义JSON
+            // response.setStatus(401);
+            // response.getWriter().write("{\"error\":\"not authenticated\"}");
+            PrintWriter out = response.getWriter();
+            out.write("<script>window.top.location.href='" + urlToRedirectTo + "';</script>");
+        } else {
+            // 普通请求，标准重定向
+            response.sendRedirect(urlToRedirectTo);
+        }
+// todo sz※ 添加署名顺序，获取当前负责人对应的项目成员表中的署名顺序值
+	@Meaning("署名顺序")
+	private String chargerOrderId;
+
+	@Meaning("当前登录ID")
+	private String curUserInfo;
+
+	@Transient
+	public String getCurUserInfo() {
+		UserInfo userInfo = BaseUserBO.getCurUserInfo(UserInfo.class);
+		return userInfo.getPersonId();
+	}
+
+	public void setCurUserInfo(String curUserInfo) {
+		this.curUserInfo = curUserInfo;
+	}
+
+	@Transient
+	@AppendSearch(value="SELECT p.PROJECT_ID, p.ORDER_ID val"
+			+ " FROM BIZ_ZX_PROJECT_MEMBER p WHERE p.PROJECT_ID IN (^{id}) AND p.PERSON_ID IN (^{curUserInfo})", relativeField="PROJECT_ID", mergeMultiVals=true)
+	public String getChargerOrderId() {
+		return chargerOrderId;
+	}
+
+	public void setChargerOrderId(String chargerOrderId) {
+		this.chargerOrderId = chargerOrderId;
+	}
+
 //CrossOver 高分辨率操作
 1.同步和阻塞的区别是什么？
 2.线程池的问题？
