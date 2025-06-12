@@ -29,6 +29,10 @@
 				for (ZXProjectDocument zxProjectDocument : document) {
 					fileIdList.add(zxProjectDocument.getFileId());
 				}
+								//String[] split = list.getFileId().split(",");
+                				//for (String fileId : split) {
+                				//	fileIdList.add(fileId);
+                				//}
 
 				//集合转数组
 				ids = fileIdList.toArray(new String[fileIdList.size()]);
